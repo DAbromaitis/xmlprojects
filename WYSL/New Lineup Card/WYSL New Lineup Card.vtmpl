@@ -1,0 +1,965 @@
+#set ($largefontsize=12)
+#set ($fontsize=9)
+#set ($smallfontsize=8)
+#set ($moresmallfontsize=7)
+#set ($tinyfontsize=6)
+<document>
+#foreach( $team in $teams )
+    #set( $session = $team.session )
+    #set( $program = $session.program )
+	<section>
+		<pagesize width="11in" height="8.5in"/>
+		<margin left="0.125in" right="0.125in" top="0.075in" bottom="0.075in"/>	
+        <paragraph type="table" preferredwidth="11in" forcewidth="true" startonnewpage="true">
+			<row>
+				<cell preferredwidth="1.625in" fixed="true">
+                    <paragraph type="textparagraph" horizontalalignment="left">
+                        <fragment fontsize="${smallfontsize}" bold="true" italic="true">
+                            #if(!$team.Approved) Roster *NOT* APPROVED #else Roster *APPROVED* #end
+                        </fragment>
+                    </paragraph>
+                    <paragraph type="table">
+						<row>
+							<cell preferredwidth="0.75in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+										Date of Game:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell preferredwidth="1in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}" bold="false">
+									____________
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+										Club:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}" bold="false">
+										$stringTool.XmlEscape($team.League.name)
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+										Team:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}" bold="true">
+										$stringTool.XmlEscape($team.name)
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+                        <row>
+                            <cell>
+                                <paragraph type="textparagraph">
+                                    <fragment fontsize="${smallfontsize}">
+                                        Division:
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}" bold="true">
+									 $stringTool.XmlEscape($team.SessionGroup.name)
+									</fragment>
+								</paragraph>
+							</cell>
+                        </row>
+                    </paragraph>
+                </cell>
+				<cell preferredwidth="1.625in" fixed="true">
+					<paragraph type="drawing" height="0.25in" width="1.7in">
+                        <shapes>
+                            <imageshape height="0.35in" x="0" y="0" path="https://static.siplay.com/CustomerLogos/WYSL.png"/>
+                            <imageshape height="0.2in" x="1.125in" y="0.070in" path="https://static.siplay.com/CustomerLogos/USClubSoccer.png"/>
+                        </shapes>
+                    </paragraph>
+					<paragraph type="table">
+						<row>
+							<cell preferredwidth="0.75in" fixed="true">
+								<paragraph type="textparagraph" >
+									<fragment fontsize="${smallfontsize}">
+										Game #:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell preferredwidth="1in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}" bold="false">
+									____________
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<paragraph type="textparagraph" >
+									<fragment fontsize="${smallfontsize}">
+										Field:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}" bold="false">
+									____________
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell>
+                                <paragraph type="textparagraph">
+                                    <fragment fontsize="${smallfontsize}">
+                                        Age Group:
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}" bold="false">
+									____________
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell colspan="2">
+								<paragraph type="table">
+									<row>
+										<cell preferredwidth="0.875in" fixed="true">
+											<paragraph type="textparagraph">
+												<fragment fontsize="${smallfontsize}">
+													Home / Visitor
+												</fragment>
+											</paragraph>										
+										</cell>
+									</row>								
+								</paragraph>								
+							</cell>
+						</row>								
+					</paragraph>								
+				</cell>
+				<cell preferredwidth="3.5in" fixed="true">
+                    <paragraph type="table">
+                        <border>
+                            <left color="black"/>
+                            <right color="black"/>
+                            <top color="black"/>
+                            <bottom color="black"/>
+                        </border>
+                        <row>
+                            <border>
+                                <background type="solidbrush" color="#cccccc" />										
+                            </border>
+                            <cell colspan="3" preferredwidth="3.5in" fixed="true">
+                                <paragraph type="textparagraph" horizontalalignment="center">
+                                    <fragment fontsize="${smallfontsize}" bold="true" italic="true">
+                                        Teams may add Intra-Club Guest Players. Please list up to 3 below:
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                        </row>
+                        <row>
+                            <cell preferredwidth="1.5in" fixed="true">
+                                <border>
+                                    <right color="black"/>
+                                    <top color="black"/>
+                                </border>
+                                <paragraph type="textparagraph" horizontalalignment="center">
+                                    <fragment fontsize="${smallfontsize}">
+                                        PLAYER NAME
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                            <cell preferredwidth="1.25in" fixed="true">
+                                <border>
+                                    <right color="black"/>
+                                    <top color="black"/>
+                                </border>
+                                <paragraph type="textparagraph" horizontalalignment="center">
+                                    <fragment fontsize="${smallfontsize}">
+                                        TEAM NAME
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                            <cell preferredwidth="0.75in" fixed="true">
+                                <border>
+                                    <top color="black"/>
+                                </border>
+                                <paragraph type="textparagraph" horizontalalignment="center">
+                                    <fragment fontsize="${smallfontsize}">
+                                        DIVISION
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                        </row>
+                        #foreach( $i in [1..3])
+                        <row minheight="0.15in">
+                            <cell>
+                                <border>
+                                    <right color="black"/>
+                                    <top color="black"/>
+                                </border>
+                            </cell>
+                            <cell>
+                                <border>
+                                    <right color="black"/>
+                                    <top color="black"/>
+                                </border>
+                            </cell>
+                            <cell>
+                                <border>
+                                    <top color="black"/>
+                                </border>
+                            </cell>
+                        </row>
+                        #end
+                    </paragraph>                       
+                    <paragraph type="table">
+                        #set( $coach = $team.GetCoach( 0 ).personCS )
+						#set( $coachReg = $team.GetCoach(0) )
+						<row>
+							<cell preferredWidth="1.5in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+										Coach:
+									</fragment>
+									<fragment fontsize="${smallfontsize}">
+										$!coach.firstname $!coach.lastname
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell preferredWidth="1in" fixed="true">
+								<paragraph type="textparagraph" horizontalalignment="left">
+									<fragment fontsize="${smallfontsize}">
+										Sig:____________________</fragment>
+								</paragraph>
+							</cell>
+							<cell preferredWidth=".5in" fixed="true">
+								<paragraph type="textparagraph" horizontalalignment="right">
+									<fragment fontsize="${smallfontsize}">
+										Y__
+									</fragment>
+									<fragment fontsize="${smallfontsize}">
+										R__
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+                    </paragraph>										
+                </cell>
+				<cell preferredwidth="3.25in" fixed="true">
+					<paragraph type="table">
+						<row>
+							<cell colspan="4">
+								<paragraph type="textparagraph" horizontalalignment="left">
+									<fragment fontsize="${smallfontsize}">
+										Rate the Coach, Parents, Players sporting behavior?
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+                            <padding top="0.02in" bottom="0.02in"/>
+							<cell colspan="4">
+								<paragraph type="textparagraph"  horizontalalignment="left">
+									<fragment fontsize="${smallfontsize}">
+										0: Red Card 1: Not Acceptable 2: Average 3: Good
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+                            <border>
+                                <right color="black"/>
+                                <bottom color="black"/>
+                            </border>
+							<cell colspan="1" preferredwidth=".65in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+									<top color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.65in" fixed="true">
+                                            <paragraph type="textparagraph" horizontalalignment="center">
+                                                <fragment fontsize="${smallfontsize}" bold="true">
+                                                    Coach
+                                                </fragment>
+                                            </paragraph>
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+									<top color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.65in" fixed="true">
+                                            <paragraph type="textparagraph" horizontalalignment="center">
+                                                <fragment fontsize="${smallfontsize}" bold="true">
+                                                    Parents
+                                                </fragment>
+                                            </paragraph>										
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+									<top color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.65in" fixed="true">
+                                            <paragraph type="textparagraph" horizontalalignment="center">
+                                                <fragment fontsize="${smallfontsize}" bold="true">
+                                                    Players
+                                                </fragment>
+                                            </paragraph>										
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+									<top color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.65in" fixed="true">
+                                            <paragraph type="textparagraph" horizontalalignment="center">
+                                                <fragment fontsize="${smallfontsize}" bold="true">
+                                                    Total
+                                                </fragment>
+                                            </paragraph>										
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+						</row>
+						<row>
+                            <border>
+                                <right color="black"/>
+                                <left color="black"/>
+                                <bottom color="black"/>
+                            </border>
+							<cell colspan="1" preferredwidth=".65in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+										Home Team
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.75in" fixed="true">
+                                            <paragraph type="table" horizontalalignment="center">
+                                                <row>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            0
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            1
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            2
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            3
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                </row>
+                                            </paragraph>
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.75in" fixed="true">
+                                            <paragraph type="table" horizontalalignment="center">
+                                                <row>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            0
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            1
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            2
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            3
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                </row>
+                                            </paragraph>
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+									<right color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.75in" fixed="true">
+                                            <paragraph type="table" horizontalalignment="center">
+                                                <row>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            0
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            1
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            2
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            3
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                </row>
+                                            </paragraph>
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+						</row>
+						<row>
+                            <border>
+                                <right color="black"/>
+                                <left color="black"/>
+                                <bottom color="black"/>
+                            </border>
+							<cell colspan="1" preferredwidth=".65in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+										Visitors
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.75in" fixed="true">
+                                            <paragraph type="table" horizontalalignment="center">
+                                                <row>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            0
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            1
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell> 
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            2
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            3
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                </row>
+                                            </paragraph>
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.75in" fixed="true">
+                                            <paragraph type="table" horizontalalignment="center">
+                                                <row>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            0
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            1
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            2
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            3
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                </row>
+                                            </paragraph>
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+							<cell>
+                                <border>
+                                    <left color="black"/>
+									<right color="black"/>
+                                </border>
+                                <paragraph type="table">
+                                    <row>
+                                        <cell preferredwidth="0.75in" fixed="true">
+                                            <paragraph type="table" horizontalalignment="center">
+                                                <row>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            0
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            1
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            2
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                    <cell preferredwidth="0.125in" fixed="true">
+                                                        <paragraph type="textparagraph">
+                                                            <fragment fontsize="${smallfontsize}" bold="true">
+                                                            3
+                                                            </fragment>
+                                                        </paragraph>
+                                                    </cell>
+                                                </row>
+                                            </paragraph>
+                                        </cell>
+                                    </row>
+                                </paragraph>
+                            </cell>
+						</row>
+					
+					</paragraph>
+                </cell>
+            </row>
+        </paragraph>
+
+        #set ($length = $team.IPlayerRegistrations.Count - 1)
+        #set ($columnSize = 8)
+        #set ($imageHeight="0.85in")
+        #set ($columnWidth="3.5in")
+
+        #if ($length < 18)
+            #set ($columnSize = 6)
+            #set ($columnWidth="3.5in")
+            #set ($imageHeight="0.85in")
+        #end
+
+        #if ($length < 15)
+            #set ($columnSize = 5)
+            #set ($columnWidth="3.5in")
+            #set ($imageHeight="1in")
+        #end
+
+        #if ($length < 10)
+            #set ($columnSize = 5)
+            #set ($columnWidth="5.25in")
+            #set ($imageHeight="1in")
+        #end
+
+
+        #set($col1Length = $columnSize - 1)
+        #if ($length < $columnSize)
+            #set($col1Length = $length)
+        #end
+
+        #set($col2Length = 2 * $columnSize - 1)
+        #if ($length < (2 * $columnSize))
+            #set($col2Length = $length)
+        #end
+        #if ($length <= $col1Length)
+            #set($col2Length = 0)
+            #set($col3Length = 0)
+        #end
+
+        #set($col3Length = 3 * $columnSize - 1)
+        #if ($length < (3 * $columnSize))
+            #set($col3Length = $length)
+        #end
+        #if ($length <= $col2Length)
+            #set($col3Length = 0)
+        #end
+
+
+        <paragraph type="table" preferredwidth="11in" forcewidth="true">
+            <row>
+                <cell preferredwidth="${columnWidth}" fixed="true">
+                    <paragraph type="table" preferredwidth="${columnWidth}" forcewidth="true">
+                        <row>
+                            <cell colspan="3">
+                            </cell>
+                            <cell preferredwidth="0.3in" fixed="true">
+                                <border>
+                                    <top color="black"/>
+                                    <left color="black"/>
+                                    <right color="black"/>
+                                    <bottom color="black"/>
+                                </border>
+                                <paragraph type="textparagraph" horizontalalignment="center">
+                                    <fragment bold="true" fontsize="${smallfontsize}">
+                                        Y
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                            <cell preferredwidth="0.3in" fixed="true">
+                                <border>
+                                    <top color="black"/>
+                                    <right color="black"/>
+                                    <bottom color="black"/>
+                                </border>
+                                <paragraph type="textparagraph" horizontalalignment="center">
+                                    <fragment bold="true" fontsize="${smallfontsize}">
+                                        R
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                        </row>
+                    
+                    #foreach ($rowCount in [0..$col1Length])
+                        #set($reg = $team.IPlayerRegistrations.get_Item($rowCount))
+                        #set($person = $reg.IPerson)
+                        <row>
+                            <cell preferredwidth="0.75in" fixed="true">
+                                <padding top="0.05in"/>
+                                #set( $picturePath = "${urlRoot}/Files/PersonImage?data=${stringTool.EncryptForImageRequest($person.Id.ToString(), $league.league_id.ToString(), $person.isMemberManager)}" )
+                                <paragraph type="image" path="$picturePath" height="$imageHeight"/>
+                            </cell>
+                            <cell>
+                                <paragraph type="textparagraph" horizontalalignment="left">
+                                    <padding top="0.15in" left="0.1in"/>
+                                    <fragment fontsize="${largefontsize}" #if(!$team.Approved)strikeout="true" #end #if($person.GetSuspensionStatus(true).IsSuspended)strikeout="true" textcolor="#ff0000" #end>
+                                        $stringTool.XmlEscape($person.Firstname) $stringTool.XmlEscape($person.Lastname)
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                            <cell preferredwidth="0.75in" fixed="true">
+                                <paragraph type="textparagraph">
+                                    <padding top="0.15in"/>
+                                    <fragment fontsize="${largefontsize}">
+                                        $!reg.JerseyNumber
+                                    </fragment>
+                                </paragraph>
+                            </cell>
+                            <cell>
+                                <border>
+                                    <left color="black"/>
+                                    <right color="black"/>
+                                    <bottom color="black"/>
+                                </border>
+                            </cell>
+                            <cell>
+                                <border>
+                                    <right color="black"/>
+                                    <bottom color="black"/>
+                                </border>
+                            </cell>                        
+                        </row>
+                        #set ($person = "")
+                        #set ($reg = "")
+                    #end
+                    </paragraph>
+                </cell>
+                #if ($col2Length > 0)
+                    <cell preferredwidth="${columnWidth}" fixed="true">
+                        <padding left="0.1in"/>
+                        <paragraph type="table" preferredwidth="${columnWidth}" forcewidth="true">
+                            <row>
+                                <cell colspan="3">
+                                </cell>
+                                <cell preferredwidth="0.3in" fixed="true">
+                                    <border>
+                                        <top color="black"/>
+                                        <left color="black"/>
+                                        <right color="black"/>
+                                        <bottom color="black"/>
+                                    </border>
+                                    <paragraph type="textparagraph" horizontalalignment="center">
+                                        <fragment bold="true" fontsize="${smallfontsize}">
+                                            Y
+                                        </fragment>
+                                    </paragraph>
+                                </cell>
+                                <cell preferredwidth="0.3in" fixed="true">
+                                    <border>
+                                        <top color="black"/>
+                                        <right color="black"/>
+                                        <bottom color="black"/>
+                                    </border>
+                                    <paragraph type="textparagraph" horizontalalignment="center">
+                                        <fragment bold="true" fontsize="${smallfontsize}">
+                                            R
+                                        </fragment>
+                                    </paragraph>
+                                </cell>
+                            </row>                    
+                        #set($start = $col1Length + 1)
+                        #foreach ($rowCount in [$start..$col2Length])
+                            #set($reg = $team.IPlayerRegistrations.get_Item($rowCount))
+                            #set($person = $reg.IPerson)
+                            <row>
+                                <cell preferredwidth="0.75in" fixed="true">
+                                        <padding top="0.05in"/>
+                                        #set( $picturePath = "${urlRoot}/Files/PersonImage?data=${stringTool.EncryptForImageRequest($person.Id.ToString(), $league.league_id.ToString(), $person.isMemberManager)}" )
+                                        <paragraph type="image" path="$picturePath" height="$imageHeight"/>
+                                </cell>
+                                <cell>
+                                    <paragraph type="textparagraph" horizontalalignment="left">
+                                        <padding top="0.15in" left="0.1in"/>
+                                        <fragment fontsize="${largefontsize}" #if(!$team.Approved)strikeout="true" #end #if($person.GetSuspensionStatus(true).IsSuspended)strikeout="true" textcolor="#ff0000" #end>
+                                            $stringTool.XmlEscape($person.Firstname) $stringTool.XmlEscape($person.Lastname)
+                                        </fragment>
+                                    </paragraph>
+                                </cell>
+                                <cell preferredwidth="0.75in" fixed="true">
+                                    <paragraph type="textparagraph" horizontalalignment="center">
+                                        <padding top="0.15in"/>
+                                        <fragment fontsize="${largefontsize}">
+                                            $!reg.JerseyNumber
+                                        </fragment>
+                                    </paragraph>
+                                </cell>
+                                <cell>
+                                    <border>
+                                        <left color="black"/>
+                                        <right color="black"/>
+                                        <bottom color="black"/>
+                                    </border>
+                                </cell>
+                                <cell>
+                                    <border>
+                                        <right color="black"/>
+                                        <bottom color="black"/>
+                                    </border>
+                                </cell>                        
+                            </row>
+                            #set ($person = "")
+                            #set ($reg = "")
+                        #end
+                        </paragraph>
+                    </cell>
+                    #if ($col3Length > 0)
+                        <cell preferredwidth="${columnWidth}" fixed="true">
+                            <padding left="0.1in"/>
+                            <paragraph type="table" preferredwidth="${columnWidth}" forcewidth="true">
+                                <row>
+                                    <cell colspan="3">
+                                    </cell>
+                                    <cell preferredwidth="0.3in" fixed="true">
+                                        <border>
+                                            <top color="black"/>
+                                            <left color="black"/>
+                                            <right color="black"/>
+                                            <bottom color="black"/>
+                                        </border>
+                                        <paragraph type="textparagraph" horizontalalignment="center">
+                                            <fragment bold="true" fontsize="${smallfontsize}">
+                                                Y
+                                            </fragment>
+                                        </paragraph>
+                                    </cell>
+                                    <cell preferredwidth="0.3in" fixed="true">
+                                        <border>
+                                            <top color="black"/>
+                                            <right color="black"/>
+                                            <bottom color="black"/>
+                                        </border>
+                                        <paragraph type="textparagraph" horizontalalignment="center">
+                                            <fragment bold="true" fontsize="${smallfontsize}">
+                                                R
+                                            </fragment>
+                                        </paragraph>
+                                    </cell>
+                                </row>                    
+                            #set($start = $col2Length + 1)
+                            #foreach ($rowCount in [$start..$col3Length])
+                                #set($reg = $team.IPlayerRegistrations.get_Item($rowCount))
+                                #set($person = $reg.IPerson)
+                                <row>
+                                    <cell preferredwidth="0.75in" fixed="true">
+                                            <padding top="0.05in"/>
+                                            #set( $picturePath = "${urlRoot}/Files/PersonImage?data=${stringTool.EncryptForImageRequest($person.Id.ToString(), $league.league_id.ToString(), $person.isMemberManager)}" )
+                                            <paragraph type="image" path="$picturePath" height="$imageHeight"/>
+                                    </cell>
+                                    <cell>
+                                        <paragraph type="textparagraph" horizontalalignment="left">
+                                            <padding top="0.15in" left="0.1in"/>
+                                            <fragment fontsize="${largefontsize}" #if(!$team.Approved)strikeout="true" #end #if($person.GetSuspensionStatus(true).IsSuspended)strikeout="true" textcolor="#ff0000" #end>
+                                                $stringTool.XmlEscape($person.Firstname) $stringTool.XmlEscape($person.Lastname)
+                                            </fragment>
+                                        </paragraph>
+                                    </cell>
+                                    <cell preferredwidth="0.75in" fixed="true">
+                                        <paragraph type="textparagraph" horizontalalignment="center">
+                                            <padding top="0.15in"/>
+                                            <fragment fontsize="${largefontsize}">
+                                                $!reg.JerseyNumber
+                                            </fragment>
+                                        </paragraph>
+                                    </cell>
+                                    <cell>
+                                        <border>
+                                            <left color="black"/>
+                                            <right color="black"/>
+                                            <bottom color="black"/>
+                                        </border>
+                                    </cell>
+                                    <cell>
+                                        <border>
+                                            <right color="black"/>
+                                            <bottom color="black"/>
+                                        </border>
+                                    </cell>                        
+                                </row>
+                                #set ($person = "")
+                                #set ($reg = "")
+                            #end
+                            </paragraph>
+                        </cell>
+                    #else
+                    <cell preferredwidth="${columnWidth}" fixed="true">
+                        <padding left="0.1in"/>
+                    </cell>
+                    #end
+                #else
+                    <cell preferredwidth="${columnWidth}" fixed="true">
+                        <padding left="0.1in"/>
+                    </cell>
+                    <cell preferredwidth="${columnWidth}" fixed="true">
+                        <padding left="0.1in"/>
+                    </cell>
+                #end
+            </row>
+
+        </paragraph>
+
+    </section>
+    #end
+</document>

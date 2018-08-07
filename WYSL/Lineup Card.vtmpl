@@ -1,0 +1,1392 @@
+#macro( sportsmanshipScale )
+	<paragraph type="table">
+		<margin top="0.05in"/>
+		<row>
+			<cell preferredwidth="1.375in" fixed="true">
+				<padding left="0.05in"/>
+				<paragraph type="textparagraph" horizontalalignment="left">
+					<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+						HOME
+					</fragment>
+				</paragraph>
+				<paragraph type="table">
+					<padding left="0.1in" top="0.05in"/>
+					<row>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								0
+								</fragment>
+							</paragraph>
+						</cell>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								1
+								</fragment>
+							</paragraph>
+						</cell>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								2
+								</fragment>
+							</paragraph>
+						</cell>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								3
+								</fragment>
+							</paragraph>
+						</cell>
+					</row>
+				</paragraph>
+			</cell>
+			<cell preferredwidth="1.375in" fixed="true">
+				<padding left="0.05in"/>
+				<border>
+					<left color="black"/>
+				</border>
+				<paragraph type="textparagraph" horizontalalignment="left">
+					<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+						VISITORS
+					</fragment>
+				</paragraph>										
+				<paragraph type="table">
+					<padding left="0.1in" top="0.05in"/>
+					<row>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								0
+								</fragment>
+							</paragraph>
+						</cell>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								1
+								</fragment>
+							</paragraph>
+						</cell>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								2
+								</fragment>
+							</paragraph>
+						</cell>
+						<cell preferredwidth="0.25in" fixed="true">
+							<paragraph type="textparagraph">
+								<fragment fontsize="${smallfontsize}" bold="true">
+								3
+								</fragment>
+							</paragraph>
+						</cell>
+					</row>
+				</paragraph>
+			</cell>
+		</row>
+	</paragraph>
+#end
+
+
+#set ($fontsize=9)
+#set ($smallfontsize=8)
+<document>
+#foreach( $team in $teams )
+#set( $session = $team.session )
+#set( $program = $session.program )
+	<section>
+		<pagesize width="11in" height="8.5in"/>
+		<margin left="0" right="0" top="0" bottom="0"/>	
+		<paragraph type="table" preferredwidth="11in" forcewidth="true" startonnewpage="true">
+			<row>
+				<cell preferredwidth="5in" fixed="true">
+                    <paragraph type="table">
+                        <row>
+                            <cell>
+                                <paragraph type="drawing" height="0.7in" width="3.4in">
+                                    <shapes>
+                                        <imageshape height="0.7in" x="0" y="0" path="https://static.siplay.com/CustomerLogos/WYSL.png"/>
+                                        <imageshape height="0.4in" x="2.05in" y="0.125in" path="https://static.siplay.com/CustomerLogos/USClubSoccer.png"/>
+                                    </shapes>
+                                </paragraph>
+                            </cell>
+                            <cell verticalalignment="middle" preferredwidth="1.5in" fixed="true">
+                                <paragraph type="textparagraph" horizontalalignment="right">
+                                    <fragment fontsize="7" italic="true">
+                                        #if(!$team.Approved) Roster *NOT* APPROVED #else Roster *APPROVED* #end #if( $team.approved )$stringTool.Format( $team.approvalDate , "MMM d, yy" ) #end
+                                    </fragment>                                    
+                                </paragraph>
+								<paragraph type="textparagraph" horizontalalignment="right">
+                                    <fragment fontsize="7">
+                                        Printed: ($date)
+                                    </fragment>                                    
+                                </paragraph>
+                            </cell>
+                        </row>
+                    </paragraph>
+                
+					<margin left="0.25in" right="0.25in" top="0.05in" bottom="0.05in"/>					
+
+					<paragraph type="textparagraph" horizontalalignment="center">
+						<margin top="0.01in"/>
+						<fragment fontsize="${fontsize}" bold="true" underline="true">
+							LINEUP FORM TO BE GIVEN TO THE REFEREE PRIOR TO THE GAME
+						</fragment>
+					</paragraph>
+
+					<paragraph type="table">
+						<row>
+							<margin top="0.05in"/>
+							<cell preferredwidth="1.0in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}">
+										Date of Game:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell preferredwidth="1.75in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}" bold="false">
+									____________________
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell preferredwidth="0.75in" fixed="true">
+								<paragraph type="textparagraph" >
+									<fragment fontsize="${fontsize}">
+										Game #:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell preferredwidth="1.5in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}" bold="false">
+									_______________
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<margin top="0.05in"/>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}">
+										Name of Club:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}" bold="false">
+										$stringTool.XmlEscape($team.ClubName)
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<paragraph type="textparagraph" >
+									<fragment fontsize="${fontsize}">
+										Field:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}" bold="false">
+									_______________
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<margin top="0.05in"/>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}">
+										Name of Team:
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${fontsize}" bold="true">
+										$stringTool.XmlEscape($team.name)
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell colspan="2">
+								<paragraph type="table">
+									<row>
+										<cell preferredwidth="1.125in" fixed="true">
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+													Home / Visitor
+												</fragment>
+											</paragraph>										
+										</cell>
+									</row>								
+								</paragraph>								
+							</cell>
+						</row>
+						<row>
+							<margin top="0.1in"/>
+							<cell colspan="2">
+								<paragraph type="table">
+									<row>
+										<cell preferredwidth="1.375in" fixed="true">
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+													Division: $stringTool.XmlEscape($team.SessionGroup.name)
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+								</paragraph>
+							</cell>
+							<cell colspan="2">
+								<paragraph type="table">
+									<row>
+										<cell preferredwidth="1.125in" fixed="true">
+											<padding bottom="0.0025in" top="0.0025in"/>
+											<border>
+												<left color="black"/>
+												<top color="black"/>												
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+													GOALS
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="1.125in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+												<right color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+													CARDS
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell colspan="4" preferredwidth="5in" fixed="true">
+								<paragraph type="table">
+									#set ($rowCount = 1)
+									<row>
+										<cell preferredwidth="0.25in" fixed="true">										
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>											
+										</cell>
+										<cell preferredwidth="0.375in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												#
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="2.125in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												PLAYER'S NAME
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.5625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												1st H
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.5625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												2nd H
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.5625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												Y
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.5625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<right color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												R
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									#foreach ($reg in $team.IPlayerRegistrations)
+									<row>
+										<cell>
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}">
+													$rowCount
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}">
+													$!reg.JerseyNumber
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<padding left="0.025in"/>
+												<fragment fontsize="${smallfontsize}" #if(!$team.Approved)strikeout="true" #end #if($reg.IPerson.GetSuspensionStatus(true).IsSuspended)strikeout="true" textcolor="#ff0000" #end>
+													$stringTool.XmlEscape($reg.IPerson.Firstname) $stringTool.XmlEscape($reg.IPerson.Lastname)
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+												<right color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									#set ($rowCount = $rowCount + 1)
+									#end					
+
+									<row>
+										<cell>
+										</cell>
+										<cell colspan="6">
+											<border>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>								
+									
+									<row minheight="0.125in">
+									</row>
+									<row>
+										<cell colspan="7">
+											<paragraph type="table">
+												<border>
+													<left color="black"/>
+													<right color="black"/>
+													<top color="black"/>
+													<bottom color="black"/>
+												</border>
+												<row>
+													<border>
+														<background type="solidbrush" color="#cccccc" />										
+													</border>
+													<cell colspan="3" preferredwidth="4.875in" fixed="true">
+														<paragraph type="textparagraph" horizontalalignment="center">
+															<fragment fontsize="${smallfontsize}" bold="true" italic="true">
+																Teams may add Intra-Club Guest Players. Please list up to 3 below:
+															</fragment>
+														</paragraph>
+													</cell>
+												</row>
+												<row>
+													<cell preferredwidth="2in" fixed="true">
+														<border>
+															<right color="black"/>
+															<top color="black"/>
+														</border>
+														<paragraph type="textparagraph" horizontalalignment="center">
+															<fragment fontsize="${smallfontsize}">
+																PLAYER NAME
+															</fragment>
+														</paragraph>
+													</cell>
+													<cell preferredwidth="2in" fixed="true">
+														<border>
+															<right color="black"/>
+															<top color="black"/>
+														</border>
+														<paragraph type="textparagraph" horizontalalignment="center">
+															<fragment fontsize="${smallfontsize}">
+																TEAM NAME
+															</fragment>
+														</paragraph>
+													</cell>
+													<cell preferredwidth="1in" fixed="true">
+														<border>
+															<top color="black"/>
+														</border>
+														<paragraph type="textparagraph" horizontalalignment="center">
+															<fragment fontsize="${smallfontsize}">
+																DIVISION
+															</fragment>
+														</paragraph>
+													</cell>
+												</row>
+												#foreach( $i in [1..3])
+												<row minheight="0.2in">
+													<cell>
+														<border>
+															<right color="black"/>
+															<top color="black"/>
+														</border>
+													</cell>
+													<cell>
+														<border>
+															<right color="black"/>
+															<top color="black"/>
+														</border>
+													</cell>
+													<cell>
+														<border>
+															<top color="black"/>
+														</border>
+													</cell>
+												</row>
+												#end
+											</paragraph>										
+										</cell>
+									</row>
+									<row minheight="0.125in">
+									</row>	
+									
+									<row>
+										<cell>
+										</cell>
+										<cell colspan="4">
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+													(A maximum of 3 coaches are permitted on sideline)
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												Y
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												R
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									#set ($rowCount = 1)
+									#foreach ($helper in $team.IHelperRegistrations)
+									#if ($helper.RoleString == "Coach" || $helper.RoleString == "Assistant Coach")
+									<row>
+										<cell colspan="5">
+											<padding bottom="0.05in"/>
+											<paragraph type="table">
+												<row>
+													<cell preferredwidth="0.5in" fixed="true">
+														<paragraph type="textparagraph">
+															<fragment fontsize="${fontsize}">
+															Coach:
+															</fragment>
+														</paragraph>
+													</cell>
+													<cell preferredwidth="1.25in" fixed="true">
+														<paragraph type="textparagraph">
+															<fragment fontsize="${fontsize}" #if($helper.IPerson.GetSuspensionStatus(true).IsSuspended)strikeout="true" textcolor="#ff0000" #end>
+															$stringTool.XmlEscape($helper.IPerson.Firstname) $stringTool.XmlEscape($helper.IPerson.Lastname)
+															</fragment>
+														</paragraph>
+													</cell>
+													<cell preferredwidth="0.75in" fixed="true">
+														<paragraph type="textparagraph">
+															<fragment fontsize="${fontsize}">
+															Signature:													
+															</fragment>
+														</paragraph>
+													</cell>													
+													<cell preferredwidth="1.25in" fixed="true">
+														<paragraph type="textparagraph">
+															<fragment fontsize="${fontsize}">
+															________________
+															</fragment>
+														</paragraph>															
+													</cell>
+												</row>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<top color="black"/>
+												<left color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell>
+											<border>
+												<top color="black"/>
+												<left color="black"/>
+												<right color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									#set ($rowCount = $rowCount + 1)
+									#end
+									#end
+									
+									
+									<row>
+										<cell colspan="7">
+											<border>
+												<top color="black"/>
+												<left color="black"/>
+												<right color="black"/>
+											</border>
+											<padding top="0.05in" left="0.05in" right="0.05in" bottom="0.05in"/>
+											<paragraph type="textparagraph" hangindentation="0.25in">
+												<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+												Codes for Yellow Cards (Insert in the "Y" column):
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												L
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Leaving w/o permission,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												DT
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Dissent,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												UB
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Unsporting Behavior (briefly explain in game report),
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												PI
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Persistent Infringement,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												E
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Entering w/o permission,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												DR
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Delay Restart,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												FRD
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Fails to Respect Distance
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<cell colspan="7">
+											<border>
+												<top color="black"/>
+												<left color="black"/>
+												<right color="black"/>
+												<bottom color="black"/>
+											</border>
+											<padding top="0.05in" left="0.05in" right="0.05in" bottom="0.05in"/>
+											<paragraph type="textparagraph" hangindentation="0.25in">
+												<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+												Codes for Red Cards (Insert in the "R" column):
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												2CT
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- 2nd Yellow,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												AL
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Language,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												VC
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Violent Conduct,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												SFP
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Serious Foul Play,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												DGH
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Denies Goal Handling,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												S
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Spitting,
+												</fragment>
+												<fragment fontsize="${smallfontsize}" bold="true" keepwithnext="true">
+												DGF
+												</fragment>
+												<fragment fontsize="${smallfontsize}">
+												- Denies Goal-Other
+												</fragment>
+											</paragraph>
+											<paragraph type="textparagraph" LeftIndentation="0.25in">
+												<fragment fontsize="${smallfontsize}">
+												(explain on right side form all ejections exception second yellow card)
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+								</paragraph>
+							</cell>
+						</row>
+					</paragraph>
+				</cell>
+				<cell preferredwidth="5in" fixed="true">
+					<margin left="0.25in" right="0.25in" top="0.25in" bottom="0.25in"/>					
+					<paragraph type="textparagraph" horizontalalignment="center">
+						<border>
+							<left color="black"/>
+							<top color="black"/>
+							<right color="black"/>
+							<bottom color="black"/>
+							<background type="solidbrush" color="#cccccc" />
+						</border>
+						<padding top="0.05in" bottom="0.05in"/>
+						<fragment fontsize="${fontsize}" bold="true">
+							REFEREE REPORT
+						</fragment>
+					</paragraph>
+					<paragraph type="textparagraph">
+						<padding top="0.1in"/>
+						<fragment fontsize="${fontsize}">
+							Name: ______________________________
+						</fragment>
+						<fragment fontsize="${fontsize}">
+							Phone: __________________
+						</fragment>
+					</paragraph>
+					<paragraph type="textparagraph">
+						<padding top="0.1in"/>
+						<fragment fontsize="${fontsize}">
+							Address: _____________________________________________________
+						</fragment>
+					</paragraph>						
+					<paragraph type="textparagraph">
+						<padding top="0.1in"/>
+						<fragment fontsize="${fontsize}">
+							Assistant Referee: _______________     Assistant Referee: _______________
+						</fragment>
+					</paragraph>						
+					<paragraph type="textparagraph">
+						<margin top="0.1in"/>
+						<padding left="0.05in" top="0.05in"/>
+						<border>
+							<left color="black"/>
+							<top color="black"/>
+							<right color="black"/>
+						</border>
+						<fragment fontsize="${fontsize}" bold="true">
+							GAME REPORT:
+						</fragment>
+						<fragment fontsize="${fontsize}">
+							(Field conditions, ejections, injuries, etc.)
+						</fragment>
+					</paragraph>						
+					<paragraph type="textparagraph">
+						<padding top="0.05in" left="0.05in"/>
+						<border>
+							<left color="black"/>
+							<right color="black"/>
+						</border>
+						<fragment fontsize="${fontsize}">
+							____________________________________________________________
+						</fragment>
+					</paragraph>						
+					<paragraph type="textparagraph">
+						<padding top="0.05in" left="0.05in"/>
+						<border>
+							<left color="black"/>
+							<right color="black"/>
+						</border>
+						<fragment fontsize="${fontsize}">
+							____________________________________________________________
+						</fragment>
+					</paragraph>						
+					<paragraph type="textparagraph">
+						<padding top="0.05in" left="0.05in"/>
+						<border>
+							<left color="black"/>
+							<right color="black"/>
+						</border>
+						<fragment fontsize="${fontsize}">
+							____________________________________________________________
+						</fragment>
+					</paragraph>												
+					<paragraph type="textparagraph">
+						<padding top="0.05in" left="0.05in" bottom="0.05in"/>
+						<border>
+							<left color="black"/>
+							<right color="black"/>
+							<bottom color="black"/>
+						</border>
+						<fragment fontsize="${fontsize}" bold="true">
+							ENCLOSE PASSES FOR EJECTIONS! (Continue report on back if needed)
+						</fragment>
+					</paragraph>
+					
+					<paragraph type="table" horizontalalignment="center">
+						<margin top="0.1in"/>
+						<row>
+							<cell preferredwidth="2in" fixed="true">
+								<paragraph type="table">
+									<border>
+										<left color="black"/>
+										<right color="black"/>
+										<top color="black"/>
+										<bottom color="black"/>
+									</border>
+									<row>
+										<border>
+											<bottom color="black"/>
+											<background type="solidbrush" color="#cccccc" />										
+										</border>
+										<cell colspan="3" preferredwidth="2in" fixed="true">
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true">
+													GOAL SCORING
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<cell colspan="3" preferredwidth="2in" fixed="true">
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true" preservewhitespace="true"> </fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<cell preferredwidth="0.75in" fixed="true">
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true">
+													Home
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true">
+													Visitors
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<cell preferredwidth="0.75in" fixed="true">
+											<padding right="0.05in"/>
+											<paragraph type="textparagraph" horizontalalignment="right" >
+												<fragment fontsize="${fontsize}" bold="true">
+												1st Half
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}" bold="true">													
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<cell preferredwidth="0.75in" fixed="true">
+											<padding right="0.05in"/>
+											<paragraph type="textparagraph" horizontalalignment="right" >
+												<fragment fontsize="${fontsize}" bold="true">
+												2nd Half
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}" bold="true">													
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<cell preferredwidth="0.75in" fixed="true">
+											<padding right="0.05in"/>
+											<paragraph type="textparagraph" horizontalalignment="right" >
+												<fragment fontsize="${fontsize}" bold="true">
+												Final
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph">
+												<fragment fontsize="${fontsize}" bold="true">													
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="0.625in" fixed="true">
+											<border>
+												<left color="black"/>
+												<top color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="center" >
+												<fragment fontsize="${fontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+								</paragraph>
+							</cell>
+						</row>
+					</paragraph>
+					<paragraph type="table" preferredwidth="5in" forcewidth="true">
+						<margin top="0.1in"/>
+						<border>
+							<top color="black"/>
+							<right color="black"/>
+							<left color="black"/>
+							<bottom color="black"/>
+						</border>
+						<row>
+							<border>
+								<bottom color="black"/>
+								<background type="solidbrush" color="#cccccc" />							
+							</border>
+							<cell colspan="4">
+								<paragraph type="textparagraph" horizontalalignment="center">
+									<fragment fontsize="${fontsize}" bold="true">
+										SPORTING BEHAVIOR RATING REPORT - to be filled out by Referee!!
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<border>
+								<bottom color="black"/>
+							</border>
+							<cell colspan="2">
+							</cell>
+							<cell colspan="2">
+								<paragraph type="textparagraph" horizontalalignment="center">
+									<fragment fontsize="${smallfontsize}" bold="true">
+										CIRCLE # OF STARS FOR EACH TEAM
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell colspan="2" preferredwidth="2in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+									Did the
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+									COACH
+									</fragment>
+									<fragment fontsize="${smallfontsize}">
+									display positive reinforcement to his/her team and was the coach respectful of the referee?
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell colspan="2">
+								<border>
+									<left color="black"/>
+								</border>
+								<paragraph type="textparagraph" horizontalalignment="center">
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										HOME
+									</fragment>
+									<fragment fontsize="${smallfontsize}" textcolor="white">
+										--
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										COACH
+									</fragment>
+									<fragment fontsize="${smallfontsize}" textcolor="white">
+										--
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										VISITORS
+									</fragment>
+								</paragraph>
+								#sportsmanshipScale()
+							</cell>
+						</row>
+						<row>
+							<border>
+								<top color="black"/>
+							</border>
+							<cell colspan="2" preferredwidth="2in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+									Were the
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+									PARENTS/SPECTATORS
+									</fragment>
+									<fragment fontsize="${smallfontsize}">
+									respectful of the referee and did they display sporting behavior towards the competition?
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell colspan="2">
+								<border>
+									<left color="black"/>
+								</border>
+								<paragraph type="textparagraph" horizontalalignment="center">
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										HOME
+									</fragment>
+									<fragment fontsize="${smallfontsize}" textcolor="white">
+										--
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										PARENTS/SPECTATORS
+									</fragment>
+									<fragment fontsize="${smallfontsize}" textcolor="white">
+										--
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										VISITORS
+									</fragment>
+								</paragraph>
+								#sportsmanshipScale()
+							</cell>
+						</row>
+						<row>
+							<border>
+								<top color="black"/>
+							</border>
+							<cell colspan="2" preferredwidth="2in" fixed="true">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+									Were the
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+									TEAM PLAYERS
+									</fragment>
+									<fragment fontsize="${smallfontsize}">
+									respectful of the referee and did they display sporting behavior towards the opposing team?
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell colspan="2">
+								<border>
+									<left color="black"/>
+								</border>
+								<paragraph type="textparagraph" horizontalalignment="center">
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										HOME
+									</fragment>
+									<fragment fontsize="${smallfontsize}" textcolor="white">
+										--
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										PLAYERS
+									</fragment>
+									<fragment fontsize="${smallfontsize}" textcolor="white">
+										--
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+										VISITORS
+									</fragment>
+								</paragraph>
+								#sportsmanshipScale()
+							</cell>
+						</row>
+						<row>
+							<border>
+								<top color="black"/>
+							</border>
+							<cell colspan="4">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+										Rating scale: 0: Red Card Issued, 1: Not Acceptable, 2: Average, 3: Good
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<border>
+								<top color="black"/>
+							</border>
+							<cell colspan="2">
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}">
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<margin left="0.55in"/>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}" bold="true">
+									HOME
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell>
+								<padding left="1.1in"/>
+								<paragraph type="textparagraph">
+									<fragment fontsize="${smallfontsize}" bold="true">
+									VISITOR
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<border>
+								<top color="black"/>
+							</border>
+							<cell preferredwidth="0.75in" fixed="true">
+								<padding top="0.075in"/>
+								<border>
+									<right color="black"/>
+								</border>
+								<paragraph type="textparagraph" horizontalalignment="center">
+									<fragment fontsize="${smallfontsize}" bold="true">
+									REFS
+									</fragment>
+									<fragment type="LinebreakFragment"/>
+									<fragment fontsize="${smallfontsize}" bold="true">
+									Enter &amp;
+									</fragment>							
+									<fragment fontsize="${smallfontsize}" bold="true" underline="true">
+									Add
+									</fragment>
+									<fragment type="LinebreakFragment"/>
+									<fragment fontsize="${smallfontsize}" bold="true">
+									Scores!!
+									</fragment>
+								</paragraph>
+							</cell>
+							<cell colspan="3" preferredwidth="4.25in" fixed="true">
+								<paragraph type="table">
+									<row>
+										<cell preferredwidth="1.25in" fixed="true">
+											<padding top="0.025in" bottom="0.025in"/>
+											<border>
+												<right color="black"/>
+											</border>
+											<padding right="0.05in"/>
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+													CLUB NAME
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="1.5in" fixed="true">
+											<border>
+												<right color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="1.5in" fixed="true">
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<border>
+											<top color="black"/>
+										</border>
+										<cell preferredwidth="1.25in" fixed="true">
+											<padding top="0.025in" bottom="0.025in"/>
+											<border>
+												<right color="black"/>
+											</border>
+											<padding right="0.05in"/>
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+													TEAM NAME
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="1.5in" fixed="true">
+											<border>
+												<right color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="1.5in" fixed="true">
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+									<row>
+										<border>
+											<top color="black"/>
+										</border>
+										<cell preferredwidth="1.25in" fixed="true">
+											<padding top="0.025in" bottom="0.025in"/>
+											<border>
+												<right color="black"/>
+											</border>
+											<padding right="0.05in"/>
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+													SPORTING SCORE
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="1.5in" fixed="true">
+											<border>
+												<right color="black"/>
+											</border>
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+										<cell preferredwidth="1.5in" fixed="true">
+											<paragraph type="textparagraph" horizontalalignment="right">
+												<fragment fontsize="${smallfontsize}" bold="true">
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+								</paragraph>							
+							</cell>
+						</row>
+						<row>
+							<cell colspan="7">
+								<paragraph type="table">
+									<border>
+										<left color="black"/>
+										<right color="black"/>
+										<top color="black"/>
+										<bottom color="black"/>
+									</border>
+									<row>
+									<border>
+									<background type="solidbrush" color="#cccccc" />										
+									</border>
+										<cell colspan="3" preferredwidth="5in" fixed="true">
+											<paragraph type="textparagraph" horizontalalignment="center">
+												<fragment fontsize="${smallfontsize}">
+													FOR 8/9/10 TEAMS ONLY
+												</fragment>
+											</paragraph>
+										</cell>
+									</row>
+								</paragraph>
+							</cell>
+						</row>
+						<row>
+							<cell colspan="7">
+								<border>
+									<left color="black"/>
+									<right color="black"/>
+									<bottom color="black"/>
+								</border>
+								<padding top="0.05in" left="0.05in" right="0.05in" bottom="0.05in"/>
+								<paragraph type="textparagraph" horizontalalignment="left">
+									<fragment fontsize="${smallfontsize}">
+										At pre-game coin toss in the center of the field the referee will call for team captains and the
+									</fragment>
+									<fragment fontsize="${smallfontsize}" bold="true">
+										Parent Sporting Directors 
+									</fragment>
+									<fragment fontsize="${smallfontsize}">
+										(assigned by the coach of each team) and enlist such person to encourage their team and fans to exhibit good sporting behavior during the game. 
+									</fragment>
+								</paragraph>
+								<paragraph type="textparagraph" horizontalalignment="left">
+									<fragment fontsize="${smallfontsize}">
+										Sporting Director: _____________________ Signature: _____________________ Ph:_________
+									</fragment>
+								</paragraph>
+							</cell>
+						</row>
+					</paragraph>
+					<paragraph type="textparagraph">
+						<margin top="0.05in"/>
+						<fragment fontsize="${fontsize}" bold="true">
+						REFEREE'S SIGNATURE:  ___________________________________________
+						</fragment>
+					</paragraph>
+					<paragraph type="textparagraph">
+						<fragment fontsize="${smallfontsize}" bold="true">
+							File reports @ www.wyslsoccer.org to speed payment &amp; score reporting.
+						</fragment>
+						<fragment type="LinebreakFragment"/>
+						<fragment fontsize="${smallfontsize}" bold="true">						
+							If Red Cards are issued file on web and mail both forms and passes to:
+						</fragment>
+					</paragraph>
+					<paragraph type="textparagraph" horizontalalignment="center">
+						<fragment fontsize="${smallfontsize}" bold="true">
+							WYSL, 32 Elm Pl Suite 1S Rye, New York 10580
+						</fragment>
+					</paragraph>
+				</cell>
+			</row>		
+		</paragraph>
+	</section>
+#end
+</document>
